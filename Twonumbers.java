@@ -2,23 +2,25 @@ package test;
 
 import java.util.Arrays;
 import java.util.Random;
-
+//红色球的数字
 public class Twonumbers {
 	public static int number1(int x) {
 		int s=(int)(Math.random()*33+1);
 		return s;
 	}
+	
+	
 	public static int number2(int y) {
 		int s=(int)(Math.random()*16+1);
 		return s;
 	}
 	public static void main(String[] args) {
-//1> ���һ����ά����ĸ��ƹ��ܡ�
+//1> 完成一个二维数组的复制功能。
 //		int[][]numss= {{1,2,3},{1,2},{1}};
-//		// ��Java�����У� clone������������ã����ԻḴ�ƶ���
-//		//��ν�ĸ��ƶ�������Ҫ����һ����Դ����ͬ����С�Ŀռ䣬������ռ��д���һ���µĶ���	
-//		//int[][]nums=numss.clone();
-//		int[][]nums=new int[3][];
+//		// 在Java语言中， clone方法被对象调用，所以会复制对象。
+//		//所谓的复制对象，首先要分配一个和源对象同样大小的空间，在这个空间中创建一个新的对象。	
+//		int[][]nums=numss.clone();
+//		//int[][]nums=new int[3][4];
 //		for(int i=0;i<numss.length;i++) {
 //			for(int j=0;j<numss[i].length;j++) {
 //				nums[i][j]=numss[i][j];
@@ -28,14 +30,15 @@ public class Twonumbers {
 //		
 		
 		
-//2>������������3��3����ĺͣ���ÿ��Ԫ��ֵ������һ��3��3 �������С�
+//2>计算下面两个3×3矩阵的和，将每个元素值放置在一个3×3 的数组中。
 //
 //	     11     15     18                     45     -6     9   
-//	     22     16     19         +           51    52     53     =   ��
+//	     22     16     19         +           51    52     53     =   ？
 //	     32     37     38                     -13    25    -60
 //		int[][]a= {{11,15,18},{22,16,19},{32,37,38}};
 //		int[][]b= {{45,-6,9},{51,52,53},{-13,25,-60}};
 //		int[][]c= new int[3][3];
+//		a,b,c数组结构相同，所以无需依次循环		
 //		for(int i=0;i<a.length;i++) {
 //			for(int j=0;j<a[i].length;j++) {
 //				c[i][j]=a[i][j]+b[i][j];
@@ -44,7 +47,7 @@ public class Twonumbers {
 //		}
 		
 		
-//3> ������4 �� 4�ľ���������л�����
+//3> 将下面4 × 4的矩阵进行行列互换。
 //		int[][]a= {{11,12,13,14},{21,22,23,24},{31,32,33,34},{41,42,43,44}};
 //		int[][]b=new int[4][4];
 //		for(int i=0;i<a.length;i++) {
@@ -56,18 +59,23 @@ public class Twonumbers {
 
 		
 		
-//4>˫ɫ��������ɳ���ʵ�֡�
-//�û�����ͨ�������������������5�����µ�˫ɫ����롣˫ɫ��
-//����7��������ɣ�ǰ��λ���ֳ�֮Ϊ��ɫ���룬���뷶Χ
-//(1~33)�������ظ�����1λΪ��ɫ���룬���뷶Χ(1~16)������
-// ��ɫ�����ظ���
+//4>双色球号码生成程序实现。
+//用户可以通过输入组数，随机生成5组以下的双色球号码。双色球
+//共由7个数字组成，前六位数字称之为红色号码，号码范围
+//(1~33)，不可重复，后1位为兰色号码，号码范围(1~16)，可与
+// 兰色号码重复。
+		// 无参函数调用：int s=函数名（）;。		
 		Random random=new Random();		
 		int[][] a=new int[5][7];
 		for(int k=0;k<a.length;k++) {
+			// 蓝色号码球可与前面的红色号码球重复，所以可以不参与下层循环。
+			//循环一次则调用一次number2方法，随机出一个新的数字。
 			a[k][6]=number2(a[k][6]);
 			for(int i=0;i<a[k].length;i++) {
+				//假设没有插入的重复值
 				boolean flag=false;
 				for(int j=0;j<i;j++) {
+					//判断插入的值是否与前面插入的元素重复
 					if(a[k][i]==a[k][j]) {
 						flag=true;
 						break;
@@ -83,18 +91,19 @@ public class Twonumbers {
 		
 		
 		
-//5>���� ʹ�ö�ά���鶨����ʵ�ֶԲ�ͬ��ʮ���ط����¶Ƚ��м�⣬
-//�������һ ����ÿ���ط���ƽ���¶ȡ�
-//Ҫ�� ����û��ʵ�ʵ��¶����ݣ�
-//�����ó����Զ�������ֵ����Ϊ��⵽���¶� ֵ��
-//Ҫ���¶ȵķ�Χ��[��10��~~35��)֮�������ƣ�
-//�������ÿ���ط�����ƽ���¶�ֵ��
+//5>需求： 使用二维数组定义来实现对不同的十个地方的温度进行监测，
+//而计算出一 年中每个地方的平均温度。
+//要求： 由于没有实际的温度数据，
+//可以让程序自动产生数值来作为监测到的温度 值，
+//要求温度的范围在[－10度~~35度)之间进行设计，
+//最后计算出每个地方的年平均温度值。
 //		Random random=new Random();
 //		int[][]a=new int[10][12];		
 //		for(int i=0;i<a.length;i++) {			
 //			int sum=0;
 //			int avg=0;
 //			for(int j=0;j<a[i].length;j++) {
+				//规律：a>b 求a,b之间的随机数：Math.random()*（a-b+1）+b
 //				int s=(int)(Math.random()*46-10);
 //				a[i][j]=s;
 //				sum+=a[i][j];
@@ -102,13 +111,13 @@ public class Twonumbers {
 //			}
 //			avg=sum/a[i].length;
 //			
-//			System.out.println("��"+(i+1)+"�����е�ƽ��������"+avg);
+//			System.out.println("第"+(i+1)+"各城市的平均气温是"+avg);
 //		}
 		
 		
 		
-//6>  �������飬���ָ���е���������� ��
-//��������Σ����������ʵ������ǣ���������б�߶���������1��ɵģ�������������ǵ��������ϵ�������֮�͡�
+//6>  利用数组，输出指定行的杨辉三角形 。
+//杨辉三角形：杨辉三角最本质的特征是，它的两条斜边都是由数字1组成的，而其余的数则是等于它肩上的两个数之和。
 //1
 //1   1
 //1   2    1

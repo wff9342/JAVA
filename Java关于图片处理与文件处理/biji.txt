@@ -1,0 +1,23 @@
+1、keydown() 
+keydown事件会在键盘按下时触发. 
+2、keyup() 
+keyup事件会在按键释放时触发,也就是你按下键盘起来后的事件 
+3、keypress() 
+keypress事件会在敲击按键时触发,我们可以理解为按下并抬起同一个按键 
+
+
+获取键盘的ASCII码值
+$(document).keydown(function(event){ 
+console.log(event.keyCode); 
+}); 
+
+
+$(document).keydown(function(event){ 
+//判断当event.keyCode 为37时（即左方面键），执行函数to_left(); 
+//判断当event.keyCode 为39时（即右方面键），执行函数to_right(); 
+if(event.keyCode == 37){ 
+//do somethings; 
+}else if (event.keyCode == 39){ 
+//do somethings; 
+} 
+}); 
